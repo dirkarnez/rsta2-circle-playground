@@ -36,15 +36,22 @@ boolean CKernel::Initialize (void)
 
 TShutdownMode CKernel::Run (void)
 {
-	CGPIOPin AudioLeft (GPIOPinAudioLeft, GPIOModeOutput);
-	CGPIOPin AudioRight (GPIOPinAudioRight, GPIOModeOutput);
+	// CGPIOPin AudioLeft (GPIOPinAudioLeft, GPIOModeOutput);
+	// CGPIOPin AudioRight (GPIOPinAudioRight, GPIOModeOutput);
+
+	CSerialDevice   mSerial(pInterrupt, FALSE),
+                if (!mSerial.Initialize (115200))
+                {
+                        return false;
+                }
+	m_pSerial->Write(pOutData, nResult);
 	
 	// flash the Act LED 10 times and click on audio (3.5mm headphone jack)
 	for (unsigned i = 1; i <= 10; i++)
 	{
 		m_ActLED.On ();
-		AudioLeft.Invert ();
-		AudioRight.Invert ();
+		// AudioLeft.Invert ();
+		// AudioRight.Invert ();
 		CTimer::SimpleMsDelay (200);
 
 		m_ActLED.Off ();
