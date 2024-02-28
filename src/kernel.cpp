@@ -39,12 +39,23 @@ TShutdownMode CKernel::Run (void)
 	// CGPIOPin AudioLeft (GPIOPinAudioLeft, GPIOModeOutput);
 	// CGPIOPin AudioRight (GPIOPinAudioRight, GPIOModeOutput);
 
-	CSerialDevice   mSerial(pInterrupt, FALSE),
+	CSerialDevice   mSerial; // default nDevice = 0, means TXD GPIO14 RXDGPIO15
+
                 if (!mSerial.Initialize (115200))
                 {
                         return false;
                 }
-	m_pSerial->Write(pOutData, nResult);
+
+		uint8_t c = 'a';
+		/*int result = */mSerial.Write(&c, 1); //c uint8_t 
+	// switch(result) {
+	// 	case 1: return Error::OK;
+	// 	case SERIAL_ERROR_BREAK: return Error::Break;
+	// 	case SERIAL_ERROR_OVERRUN: return Error::Overrun;
+	// 	case SERIAL_ERROR_FRAMING: return Error::Framing;
+	// 	case SERIAL_ERROR_PARITY: return Error::Parity;
+	// 	default: return Error::Fail;
+	}
 	
 	// flash the Act LED 10 times and click on audio (3.5mm headphone jack)
 	for (unsigned i = 1; i <= 10; i++)
