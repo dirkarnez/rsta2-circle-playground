@@ -34,7 +34,7 @@ boolean CKernel::Initialize (void)
 {
 	if (!serial.Initialize (115200))
 	{
-			return false;
+			return FALSE;
 	}
 
 	return TRUE;
@@ -62,6 +62,10 @@ TShutdownMode CKernel::Run (void)
 	{
 		serial.Write(&c, 1); //c uint8_t 
 		serial.Write(&i, 1); //c uint8_t 
+	}
+
+	while(true) {
+		serial.Write(&c, 1); //c uint8_t 
 	}
 
 	return ShutdownReboot;
