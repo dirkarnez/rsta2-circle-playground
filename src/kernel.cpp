@@ -20,6 +20,7 @@
 #include "kernel.h"
 #include <circle/gpiopin.h>
 #include <circle/timer.h>
+#include <stdint.h>
 
 CKernel::CKernel (void)
 {
@@ -31,6 +32,11 @@ CKernel::~CKernel (void)
 
 boolean CKernel::Initialize (void)
 {
+	if (!serial.Initialize (115200))
+	{
+			return false;
+	}
+
 	return TRUE;
 }
 
@@ -39,15 +45,9 @@ TShutdownMode CKernel::Run (void)
 	// CGPIOPin AudioLeft (GPIOPinAudioLeft, GPIOModeOutput);
 	// CGPIOPin AudioRight (GPIOPinAudioRight, GPIOModeOutput);
 
-	CSerialDevice   mSerial; // default nDevice = 0, means TXD GPIO14 RXDGPIO15
 
-                if (!mSerial.Initialize (115200))
-                {
-                        return false;
-                }
-
-		uint8_t c = 'a';
-		/*int result = */mSerial.Write(&c, 1); //c uint8_t 
+	uint8_t c = 'a';
+		/*int result = */
 	// switch(result) {
 	// 	case 1: return Error::OK;
 	// 	case SERIAL_ERROR_BREAK: return Error::Break;
@@ -55,18 +55,13 @@ TShutdownMode CKernel::Run (void)
 	// 	case SERIAL_ERROR_FRAMING: return Error::Framing;
 	// 	case SERIAL_ERROR_PARITY: return Error::Parity;
 	// 	default: return Error::Fail;
-	}
+	
 	
 	// flash the Act LED 10 times and click on audio (3.5mm headphone jack)
-	for (unsigned i = 1; i <= 10; i++)
+	for (uint8_t i = 0; i < 10000; i++)
 	{
-		m_ActLED.On ();
-		// AudioLeft.Invert ();
-		// AudioRight.Invert ();
-		CTimer::SimpleMsDelay (200);
-
-		m_ActLED.Off ();
-		CTimer::SimpleMsDelay (500);
+		serial.Write(&c, 1); //c uint8_t 
+		serial.Write(&i, 1); //c uint8_t 
 	}
 
 	return ShutdownReboot;

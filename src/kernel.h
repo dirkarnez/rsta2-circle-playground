@@ -21,6 +21,7 @@
 #define _kernel_h
 
 #include <circle/actled.h>
+#include <circle/serial.h>
 #include <circle/types.h>
 
 enum TShutdownMode
@@ -42,7 +43,7 @@ public:
 
 private:
 	CActLED m_ActLED;
-	
+	CSerialDevice serial;
 };
 
 #endif
