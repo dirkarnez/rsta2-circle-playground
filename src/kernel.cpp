@@ -32,12 +32,9 @@ CKernel::~CKernel (void)
 
 boolean CKernel::Initialize (void)
 {
-	if (!serial.Initialize (115200))
-	{
-			return FALSE;
-	}
-
-	return TRUE;
+	boolean bOK = TRUE;
+	bOK = serial.Initialize (115200);
+	return bOK;
 }
 
 TShutdownMode CKernel::Run (void)
@@ -46,7 +43,7 @@ TShutdownMode CKernel::Run (void)
 	// CGPIOPin AudioRight (GPIOPinAudioRight, GPIOModeOutput);
 
 
-	uint8_t c = 'a';
+	u8 c = 'a';
 		/*int result = */
 	// switch(result) {
 	// 	case 1: return Error::OK;
@@ -58,7 +55,7 @@ TShutdownMode CKernel::Run (void)
 	
 	
 	// flash the Act LED 10 times and click on audio (3.5mm headphone jack)
-	for (uint8_t i = 0; i < 10000; i++)
+	for (u8 i = 0; i < 10000; i++)
 	{
 		serial.Write(&c, 1); //c uint8_t 
 		serial.Write(&i, 1); //c uint8_t 
