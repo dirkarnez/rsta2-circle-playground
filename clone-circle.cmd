@@ -9,4 +9,5 @@ SET PATH=^
 
 cd /d "%DOWNLOADS_DIR%" &&^
 git clone --recurse-submodules https://github.com/rsta2/circle.git && cd circle && git checkout Step45.3.1 &&^
+git submodule update --recursive &&^
 pause

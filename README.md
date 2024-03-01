@@ -9,3 +9,11 @@ rsta2-circle-playground
         exit 1
     fi
     ```
+- `#define SCREEN_HEADLESS` in `include\circle\sysconfig.h` must be uncommented before compiling circle
+- no UART enable is needed because GPIO 14 and 15 is enabled by default
+    - nothing should be added to `config.txt`
+- in the SD card there should be a file names `cmdline.txt` with cotent:
+    - `logdev=ttyS1`
+
+### issues
+- https://github.com/rsta2/circle/issues/262

@@ -21,7 +21,11 @@
 #define _kernel_h
 
 #include <circle/actled.h>
+#include <circle/koptions.h>
+#include <circle/devicenameservice.h>
+#include <circle/screen.h>
 #include <circle/serial.h>
+#include <circle/logger.h>
 #include <circle/types.h>
 
 enum TShutdownMode
@@ -42,8 +46,13 @@ public:
 	TShutdownMode Run (void);
 
 private:
-	CActLED m_ActLED;
-	CSerialDevice serial;
+	// do not change this order
+	CActLED			m_ActLED;
+	CKernelOptions		m_Options;
+	CDeviceNameService	m_DeviceNameService;
+	CScreenDevice		m_Screen;
+	CSerialDevice		m_Serial;
+	CLogger			m_Logger;
 };
 
 #endif

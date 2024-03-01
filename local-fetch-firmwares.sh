@@ -7,6 +7,9 @@ export PATH="$PATH:$USERPROFILE/Downloads/wget-1.21.4-win64"
 export PATH="$PATH:$PWD"
 # cd $USERPROFILE/Downloads/circle/boot && \
 # $MAKE && \
+
+make="${MAKE:-make}"
+
 echo $PATH && \
 ln -s -f $MAKE make && \
 cd firmwares && \
