@@ -27,6 +27,12 @@
 #include <circle/serial.h>
 #include <circle/logger.h>
 #include <circle/types.h>
+#include <circle/exceptionhandler.h>
+#include <circle/interrupt.h>
+#include <circle/timer.h>
+#include <circle/gpiomanager.h>
+#include <circle/bcmrandom.h>
+#include <circle/gpiopin.h>
 
 enum TShutdownMode
 {
@@ -46,13 +52,25 @@ public:
 	TShutdownMode Run (void);
 
 private:
+	void InterruptHandler (void);
+	static void InterruptHandler (void *pParam);
+
+private:
 	// do not change this order
 	CActLED			m_ActLED;
 	CKernelOptions		m_Options;
 	CDeviceNameService	m_DeviceNameService;
 	CScreenDevice		m_Screen;
 	CSerialDevice		m_Serial;
+	CExceptionHandler	m_ExceptionHandler;
+	CInterruptSystem	m_Interrupt;
+	CTimer			m_Timer;
 	CLogger			m_Logger;
+
+	CGPIOManager		m_GPIOManager;
+	CGPIOPin		m_ButtonPin;
+	CBcmRandomNumberGenerator m_Random;
+
 };
 
 #endif

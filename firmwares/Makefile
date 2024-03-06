@@ -4,5 +4,5 @@ make := $(MAKE)
 
 all:
 	make -C $(CIRCLEHOME)/boot
-	@echo "324"
+	@echo "done"
 
