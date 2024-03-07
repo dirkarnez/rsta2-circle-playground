@@ -8,6 +8,6 @@ SET PATH=^
 %DOWNLOADS_DIR%\PortableGit\bin;
 
 cd /d "%DOWNLOADS_DIR%" &&^
-git clone --recurse-submodules https://github.com/rsta2/circle.git && cd circle && git checkout Step45.3.1 &&^
+git clone --recurse-submodules https://github.com/rsta2/circle.git && cd circle && git checkout Step46 &&^
 git submodule update --recursive &&^
 pause
