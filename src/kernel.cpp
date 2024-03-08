@@ -3,7 +3,7 @@
 #include <assert.h>
 
 
-#define GPIO_BUTTON	21	// connect a button between this GPIO and GND
+#define GPIO_BUTTON	18	// connect a button between this GPIO and GND
 
 static const char FromKernel[] = "kernel";
 
