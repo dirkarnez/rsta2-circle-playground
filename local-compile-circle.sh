@@ -6,8 +6,10 @@ export MAKE="$USERPROFILE/Downloads/x86_64-8.1.0-release-posix-seh-rt_v6-rev0/mi
 
 make="${MAKE:-make}"
 
+# You cannot write to serial or screen from a (GPIO) interrupt handler in REALTIME mode.
+# --realtime 
 cd $USERPROFILE/Downloads/circle && \
-./configure --raspberrypi 4 --realtime --prefix aarch64-none-elf- --multicore --c++17  && \
+./configure --raspberrypi 4 --prefix aarch64-none-elf- --multicore --c++17  && \
 ./makeall clean && \
 ./makeall && \
 read -p "done"
