@@ -15,5 +15,7 @@ rsta2-circle-playground
 - in the SD card there should be a file names `cmdline.txt` with cotent:
     - `logdev=ttyS1`
 
+### Docs
+- [circle/doc/cmdline.txt at master · rsta2/circle](https://github.com/rsta2/circle/blob/master/doc/cmdline.txt)
 ### issues
 - https://github.com/rsta2/circle/issues/262
