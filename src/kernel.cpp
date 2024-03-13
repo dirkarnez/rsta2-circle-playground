@@ -1,7 +1,7 @@
 #include "kernel.h"
 #include <circle/timer.h>
 #include <assert.h>
-
+#include "data.hpp"
 
 #define GPIO_BUTTON	18	// connect a button between this GPIO and GND
 
@@ -71,17 +71,18 @@ TShutdownMode CKernel::Run (void)
 	m_ButtonPin.ConnectInterrupt (InterruptHandler, this);
 	m_ButtonPin.EnableInterrupt (GPIOInterruptOnRisingEdge);
 
+	unsigned i = m_Random.GetNumber () % HEIGHT;
+	unsigned j = 0;
 	while (1)
 	{
-		u32 nNumber = m_Random.GetNumber () % 100; //0 到 4,294,967,295
+		u32 idx = ; //0 到 4,294,967,295
 		// static const char ScreenMsg[] = "Hello screen!\n";
 		//m_Serial.Write (ScreenMsg, sizeof ScreenMsg-1);
 
-		static const char SerialMsg[] = "in the loop!\n";
-		m_Serial.Write (SerialMsg, sizeof SerialMsg-1);
-
-		CString Source;
-		Source.Format ("%u", nNumber);
+		// static const char SerialMsg[] = "in the loop!\n";
+		// m_Serial.Write (SerialMsg, sizeof SerialMsg-1);
+		
+		CString Source(samples[i][j++]);
 		m_Serial.Write (Source, Source.GetLength());
 		
 		CTimer::SimpleMsDelay (1000);
